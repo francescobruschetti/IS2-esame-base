@@ -1,7 +1,7 @@
 {
   "name": "is2-esame-base",
   "version": "1.0.0",
-  "description": "",
+  "description": "Preparation exercise for the exam ",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
