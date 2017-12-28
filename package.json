@@ -4,14 +4,13 @@
   "description": "Preparation exercise for the exam ",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-	"start": "node ./index.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "author": "Francesco Bruschetti",
+  "license": "ISC",
   "dependencies": {
     "body-parser": "^1.18.2",
     "express": "^4.16.2",
     "uuid-v4": "^0.1.0"
-  },
-  "author": "Francesco Bruschetti",
-  "license": "ISC"
+  }
 }
