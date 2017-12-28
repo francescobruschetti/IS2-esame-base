@@ -4,10 +4,10 @@ const express = require('express'),
 const app = express();
 app.use(bodyParser.json());
 
-const assignments = require('./activity') // activity è il file.js in cui il server gestirà tutte le richieste
+const activity = require('./activity') // activity è il file.js in cui il server gestirà tutte le richieste
 
 
-app.use('/assignments', assignments)
+app.use('/activity', activity)
 
 app.set('port', (process.env.PORT || 5000));
 
