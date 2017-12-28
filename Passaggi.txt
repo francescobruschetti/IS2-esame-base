@@ -1,0 +1,40 @@
+1. Creo file Procfile contenente il comando: web: node index.js
+2. Apro un cmd nella cartella e faccio:
+   > git init
+   > npm init -> specifico i dati richiesti
+3. Creo il server "index.js" e scrivo il codice per gestire la fase di accesso da parte del client
+4. Creo un file "activity.js" in cui gestisco il comportamento del server alle richieste dei client
+   > OSS: "activity.js" va specificato nel file "index.js"  : const assignments = require('./activity')
+5. In "activity.js" scrivo il codice
+
+6. Prima di eseguire devo installare tutti i pacchetti che sono richiesti dai punti 4. e 5. facendo, da CMD:
+   > npm install express
+   > npm install body-parser
+   > npm install uuid-v4
+
+7. Eseguoi il server con il comando: node ./index.js
+
+Inizializzazione GIT con collegamento a HEROKU
+8. Su git creo la repository in cui caricare questi file
+9. Effetto il login
+    > heroku login
+10. Creo l'applicazione su heroku:
+    > heroku create app nomeappunivoco
+Collegamento GIT-HEROKU
+11. Su Heroku, in > Deploy > Deployment method: seleziono Github > Seleziono la repository e clicco "Connect"
+
+Caricamento su GITHUB (e in automentico su heroku)
+9. Da cmd:
+   > git remote add origin https://github.com/....... .git
+   > git add .
+   > git commit -m "Commit description"
+   > git push origin master
+
+
+
+
+
+
+
+
+
