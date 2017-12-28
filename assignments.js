@@ -1,10 +1,15 @@
+/**
+ * Created by fabio on 02/12/2017.
+ */
+
+
 const express = require('express'),
     bodyParser = require('body-parser');
 const assignments = express.Router()
 
 var uuid = require('uuid-v4');
 
-const deliveredAssignments = [] 
+const deliveredAssignments = []
 
 
 assignments.get('/client', function (req, res) {

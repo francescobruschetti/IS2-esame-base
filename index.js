@@ -1,17 +1,25 @@
+/**
+ * Created by fabio on 02/12/2017.
+ */
+
+//const db = require('./db')
+
 const express = require('express'),
     bodyParser = require('body-parser');
 
 const app = express();
 app.use(bodyParser.json());
 
-const activity = require('./activity') // activity è il file.js in cui il server gestirà tutte le richieste
 
 
-app.use('/activity', activity)
+const assignments = require('./assignments')
+
+
+app.use('/assignments', assignments)
 
 app.set('port', (process.env.PORT || 5000));
 
-// avvio il server
 app.listen(app.get('port'), function() {
     console.log('Node app is running on port', app.get('port'));
 });
+
