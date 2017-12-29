@@ -53,10 +53,12 @@ assignmentsx.get('/:assignmentID', function (req, res) {
 })
 
 assignmentsx.put('/:assignmentID', function (req, res) {
-	console.log("PUT");
+
     const assignmentID = req.params.assignmentID
     const i = deliveredAssignments.findIndex(item => {return item.assignmentID === assignmentID})
+	
 	console.log(req.body);
+	
     deliveredAssignments[i] = req.body
     deliveredAssignments[i].dateUpdated = new Date()
     res.json(deliveredAssignments[i])

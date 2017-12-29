@@ -1,7 +1,34 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script>
+		function put() {
+			var _assignmentID = $("#txtAssignmentID").val();
 
+			var updatedAssignment = new Object();
+			updatedAssignment.workerID = "adipisicing dol";
+			updatedAssignment.taskID = "consectetur Lorem aute velit non";
+			updatedAssignment.assignmentID = _assignmentID;
+			updatedAssignment.assignmentResult = {};
+			updatedAssignment.consectetur0 = "amet adipisicing fugiat ea";
+			
+		
+      		$.ajax({
+                url: '/activities/'+_assignmentID,
+                type: 'PUT',
+                dataType: 'json',
+                data: JSON.stringify(updatedAssignment),
+				contentType: 'application/json', // <------------- IMPORTANTE se si vuole mandare un oggetto all'interno del "body" dell request fatta al server node
+                success: function (data) {
+                    console.log(data);
+                },
+                error: function () {
+                    console.log('Error in Operation');
+                }
+            });
+		}
+	</script>
 </head>
 
 <body>
@@ -18,8 +45,9 @@
     <input type="submit" value="List">
 </form>
 
-
-
+<h3>you can use PUT and DELETE in AJAX requests</h3>
+<input type="text" id="txtAssignmentID" value="" placeholder="assignmentID" />
+<button onclick="put()" >Update assignment (PUT)</button>
 
 
     
