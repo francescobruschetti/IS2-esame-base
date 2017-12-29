@@ -1,8 +1,3 @@
-/**
- * Created by fabio on 02/12/2017.
- */
-
-
 const express = require('express'),
     bodyParser = require('body-parser');
 const assignments = express.Router()

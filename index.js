@@ -1,7 +1,3 @@
-/**
- * Created by fabio on 02/12/2017.
- */
-
 //const db = require('./db')
 
 const express = require('express'),
@@ -10,12 +6,10 @@ const express = require('express'),
 const app = express();
 app.use(bodyParser.json());
 
+const activities = require('./activities')
 
 
-const assignments = require('./assignments')
-
-
-app.use('/assignments', assignments)
+app.use('/activities', activities)
 
 app.set('port', (process.env.PORT || 5000));
 
