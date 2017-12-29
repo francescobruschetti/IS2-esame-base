@@ -1,0 +1,173 @@
+swagger: "2.0"
+info:
+  version: 1.0.0
+  title: "IS2-esame-base" #
+  description: A sample API that uses a petstore as an example to demonstrate features in the swagger-2.0 specification
+  termsOfService: http://swagger.io/terms/
+  contact:
+    name: Francesco B #
+    email: Francesco@example.com #
+    url: http://miosito.net #
+  license:
+    name: MIT
+    url: http://github.com/gruntjs/grunt/blob/master/LICENSE-MIT
+host: is2-esame-base.herokuapp.com # url della mia applicazione su heroku
+basePath: / # lascio il percorso base
+schemes:
+  - https # heroku necessita dell' httpS
+consumes:
+  - application/json
+produces:
+  - application/json
+paths:
+  /activities: # primo 'path' del mio server
+    get:
+      description: | 
+        Return all the assignments uploaded on the server
+      operationId: getAssignments #
+      parameters:
+        - name: taskid #
+          in: query
+          description: Unique id of the task #
+          required: false # means that this parameter is not necessary for the operation. it's optional
+          type: string #
+          
+        - name: userid #
+          in: query
+          description: Unique id of the user #
+          required: false
+          type: string
+          
+      responses:
+        200:
+          description: list of all the assignments #
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Assignment' # links to the end of this file where is defined the structure of the response for this action
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+    post:
+      description: Uploads a new assignment. #
+      operationId: addAssignment #
+      parameters:
+        - name: assignment #
+          in: body
+          description: Allows users to upload new assignment #
+          required: true
+          schema:
+            $ref: '#/definitions/NewAssignment'
+      responses:
+        200:
+          description: assignment created response #
+          schema:
+            $ref: '#/definitions/Assignment' #
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+  
+  
+  /activities/{id}:
+    get:
+      description: Returns specified assignment
+      operationId: getAssignment
+      parameters:
+        - name: id
+          in: path
+          description: ID of assignment to fetch
+          required: true
+          type: string
+      responses:
+        200:
+          description: Searched assignment data
+          schema:
+            $ref: '#/definitions/Assignment'
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+    put:
+      description: Updates an existing assignment, or create a new one with ID.
+      operationId: updateAssignment
+      parameters:
+        - name: id
+          in: path
+          description: ID of assignment to edit or create
+          required: true
+          type: string
+          x-example: 'some-example'
+        - name: assignment
+          in: body
+          description: assignment
+          required: true
+          schema:
+            $ref: '#/definitions/Assignment'
+      responses:
+        202:
+          description: assignment update response
+          schema:
+            $ref: '#/definitions/Assignment'
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+    
+    delete:
+      description: Delete specified assignment
+      operationId: deleteAssignment
+      parameters:
+        - name: id
+          in: path
+          description: ID of assignmet to delete
+          required: true
+          type: string
+      responses:
+        204:
+          description: assignment deleted
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+definitions: # defined the structure of how the server answer to this actions
+  Assignment:
+    allOf:
+      - $ref: '#/definitions/NewAssignment'
+      - required:
+        - assignmentID
+        properties:
+          assignmentID:
+            type: string
+          ipAddress:
+            type: string
+            format: ipv6
+          dateUpdated: 
+            type: string
+            format: date-time
+  NewAssignment:
+    required:
+      - workerID
+      - taskID
+      - assignmentID
+      - assignmentResult
+    properties:
+      workerID:
+        type: string
+      taskID:
+        type: string
+      assignmentResult:
+        type: object
+      status:
+        type: string
+  Error:
+    required:
+      - code
+      - message
+    properties:
+      code:
+        type: integer
+        format: int32
+      message:
+        type: string
